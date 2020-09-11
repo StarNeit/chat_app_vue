@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8px" height="3px" viewBox="0 0 8 3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon — Dropdown</title>
+    <g id="Design-System" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.600000024">
+        <g id="Backend-Design-System/Atoms/Icons" transform="translate(-382.000000, -679.000000)">
+            <g id="Other" transform="translate(50.000000, 610.000000)">
+                <g id="Dropdown" transform="translate(312.000000, 46.000000)">
+                    <g id="Icon-—-Dropdown" transform="translate(20.000000, 22.000000)">
+                        <rect id="Area" x="0" y="0" width="8" height="5"></rect>
+                        <polyline id="Path" stroke="#181E26" stroke-linecap="round" stroke-linejoin="round" points="1 1 4 4 7 1"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
