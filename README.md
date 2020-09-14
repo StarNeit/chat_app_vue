@@ -1,4 +1,4 @@
-# Chatting application based on Vue.js
+# Chat App based on Vue.js
 ## Run
 yarn
 
