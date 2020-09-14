@@ -13,7 +13,8 @@ const state = {
   menuList: [],
   selectedCustomerId: 0,
   toggleMobileChatHistory: false,
-  toggleMobileCustomerDetail: false
+  toggleMobileCustomerDetail: false,
+  toggleMobileSideMenu: false
 }
 
 const debug = process.env.NODE_ENV !== 'production'

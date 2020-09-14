@@ -21,6 +21,10 @@ export default {
 
   $setToggleMobileCustomerDetail({commit, state}, val) {
     commit('$vuexSetToggleMobileCustomerDetail', val)
+  },
+
+  $setToggleMobileSideMenu({commit, state}, val) {
+    commit('$vuexSetToggleMobileSideMenu', val)
   }
 
 }

@@ -23,7 +23,8 @@ Vue.mixin({
       '$setMenuList',
       '$setSelectedCustomerId',
       '$setToggleMobileChatHistory',
-      '$setToggleMobileCustomerDetail'
+      '$setToggleMobileCustomerDetail',
+      '$setToggleMobileSideMenu'
     ]),
 
     $triggerSidenav () {

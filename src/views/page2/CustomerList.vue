@@ -17,6 +17,7 @@
         v-for="item in customerList"
         :data="item"
         :key="item.id"
+        @handleClick="handleClickCustomerItem(item.id)"
       />
     </div>
   </div>
@@ -24,64 +25,20 @@
 
 <script>
 import CustomerItem from './CustomerItem'
-const mockListData = [
-  {
-    id: 0,
-    type: 'group-chat',
-    name: 'Peter Volkolso',
-    chat_log: 'Hello! What a great design',
-    time: '20m',
-    notification: 3
-  },
-  {
-    id: 1,
-    type: 'single-chat',
-    name: 'White Bear from London',
-    chat_log: 'Hello! What a great design',
-    time: '20m',
-    status: 'online'
-  },
-  {
-    id: 2,
-    type: 'single-chat',
-    name: 'Blue cat from London',
-    chat_log: 'Hello! What a great design',
-    time: '20m',
-    notification: 3,
-    status: 'online'
-  },
-  {
-    id: 3,
-    type: 'single-chat',
-    name: 'Red Lobster from Moscow',
-    chat_log: 'Hello! What a great design',
-    time: '20m'
-  },
-  {
-    id: 4,
-    type: 'single-chat',
-    name: 'Black Diamond from Paris',
-    chat_log: 'Hello! What a great design',
-    time: '20m',
-    status: 'online'
-  },
-  {
-    id: 5,
-    type: 'single-chat',
-    name: 'Green Dog from London',
-    chat_log: 'Hello! What a great design',
-    time: '20m'
-  }
-]
 
 export default {
   name: 'SideBar',
   components: { CustomerItem },
-  props: {},
-
+  props: ['customerList'],
+  methods: {
+    handleClickCustomerItem (id) {
+      this.$setSelectedCustomerId(id)
+      this.$setToggleMobileSideMenu(false)
+      this.$setToggleMobileChatHistory(true)
+    }
+  },
   data () {
     return {
-      customerList: mockListData
     }
   }
 }
@@ -95,6 +52,11 @@ export default {
   border-top: 2px solid #f3f3f3;
   display: flex;
   flex-direction: column;
+  min-width: 300px;
+
+  @media (max-width: 576px) {
+    flex: 1;
+  }
 
   .header {
     padding: 20px 15px 17px;
@@ -137,6 +99,7 @@ export default {
   .tab-bar {
     height: 25px;
     padding: 0 15px;
+    margin-bottom: 15px;
 
     .tab-item {
       font-size: 13px;
@@ -155,7 +118,7 @@ export default {
 
   .customer-list {
     overflow: auto;
-    padding: 15px;
+    padding: 0 15px 15px;
 
     &::-webkit-scrollbar {
       display: none;

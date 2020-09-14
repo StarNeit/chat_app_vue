@@ -1,9 +1,18 @@
 <template>
-  <div id="customer-detail-panel">
+  <div
+    id="customer-detail-panel"
+    :class="{show: $store.state.toggleMobileCustomerDetail}"
+  >
     <div class="header">
-      <span class="avatar">W</span>
+      <span
+        class="back-to-list__btn"
+        @click="onClickBackBtn"
+      >
+        <icon name="angle-left" />
+      </span>
+      <span class="avatar">{{customerData.name[0]}}</span>
       <div class="name">
-        <h6>White Bear from London</h6>
+        <h6>{{customerData.name}}</h6>
         <p>whitebear@gmail.com</p>
       </div>
       <span class="ellipsis-icon">
@@ -128,8 +137,12 @@
 export default {
   name: 'CustomerDetail',
   components: { },
-  props: {},
-
+  props: ['customerData'],
+  methods: {
+    onClickBackBtn () {
+      this.$setToggleMobileCustomerDetail(false)
+    }
+  },
   data () {
     return {}
   }
@@ -140,11 +153,28 @@ export default {
 <style lang="scss">
 #customer-detail-panel {
   flex: 21% 0 0;
-  height: 100%;
   background-color: white;
   border-top: 2px solid #f3f3f3;
   color: #272727;
   overflow: auto;
+  min-width: 315px;
+  transition: all 0.3s ease;
+  transition-delay: 0.1s;
+
+  &.show {
+    @media (max-width: 576px) {
+      right: 0;
+      position: absolute !important;
+    }
+  }
+
+  @media (max-width: 576px) {
+    position: fixed;
+    right: -800px;
+    width: 100%;
+    height: calc( 100vh - 65px);
+    overflow: auto;
+  }
 
   &::-webkit-scrollbar {
     display: none;
@@ -155,6 +185,10 @@ export default {
     padding: 25px;
     border-bottom: 1px solid #f0f0f0;
     position: relative;
+
+    @media (max-width: 576px) {
+      padding-left: 45px;
+    }
 
     span.avatar {
       display: flex;
@@ -203,6 +237,33 @@ export default {
       svg {
         height: 15px;
         color: #969696;
+      }
+    }
+
+    span.back-to-list__btn {
+      width: 35px;
+      height: 35px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      transition: background-color 0.3s ease;
+      display: none;
+
+      @media (max-width: 576px) {
+        display: flex;
+        position: absolute;
+        top: 34px;
+        left: 5px;
+      }
+
+      &:hover {
+        background-color: #f4f1f1;
+      }
+
+      svg {
+        width: 30px;
+        height: 30px;
+        color: #707780;
       }
     }
   }
@@ -272,7 +333,7 @@ export default {
           display: flex;
           align-items: center;
           padding-left: 10px;
-          width: 83%;
+          width: 80%;
 
           a {
             color: #272727;

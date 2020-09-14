@@ -118,6 +118,30 @@ const chatHistory = [
   {
     type: 2,
     msg: 'Your order has been modified.'
+  },
+  {
+    type: 1,
+    msg: 'I\'d like to get a larger size in one of the shirts'
+  },
+  {
+    type: 1,
+    msg: 'if possible 😀'
+  },
+  {
+    type: 2,
+    msg: 'Sure, can you specify the shirts model?'
+  },
+  {
+    type: 1,
+    msg: 'BlackDeluxe 20'
+  },
+  {
+    type: 2,
+    msg: 'Thanks Brandon.'
+  },
+  {
+    type: 2,
+    msg: 'Your order has been modified.'
   }
 ]
 
@@ -160,11 +184,13 @@ export default {
   flex-direction: column;
   transition: all 0.3s ease;
   transition-delay: 0.1s;
-  min-height: 100vh;
 
   &.show {
-    right: 0;
-    position: absolute !important;
+    @media (max-width: 576px) {
+      right: 0;
+      position: absolute !important;
+      min-height: 100vh;
+    }
   }
 
   @media (max-width: 576px) {
@@ -289,6 +315,16 @@ export default {
     background-color: #f0f8fb;
     flex: 1;
     padding: 15px;
+    height: calc( 100vh - 64px - 55px);
+    overflow: auto;
+
+    @media (max-width: 576px) {
+      height: calc( 100vh - 95px - 55px);
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     .date {
       text-align: center;

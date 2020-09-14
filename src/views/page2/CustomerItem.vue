@@ -1,5 +1,9 @@
 <template>
-  <div id="customer_item">
+  <div
+    id="customer_item"
+    @click="onClickCustomerItem"
+    :class="{active: data.id === this.$store.state.selectedCustomerId}"
+  >
     <div class="body">
       <span class="avatar">{{this.data.name[0]}}</span>
       <div class="name">
@@ -7,6 +11,12 @@
         <p>{{this.data.chat_log}}</p>
       </div>
       <p class="time">{{this.data.time}}</p>
+      <span
+        class="ellipsis-icon"
+        @click="onClickShowDetail"
+      >
+      <icon name="ellipsis-v" />
+    </span>
     </div>
     <div class="footer">
       <div
@@ -41,6 +51,16 @@ export default {
   name: 'CustomerItem',
   components: { },
   props: ['data'],
+  methods: {
+    onClickCustomerItem () {
+      this.$emit('handleClick')
+    },
+    onClickShowDetail (e) {
+      e.stopPropagation()
+      this.$setToggleMobileSideMenu(false)
+      this.$setToggleMobileCustomerDetail(true)
+    }
+  },
   data () {
     return {}
   }
@@ -60,13 +80,18 @@ export default {
   transition: all 0.3s ease;
   box-shadow: 0 0 10px 2px #f5f5f5;
 
-  &:hover {
+  &:hover, &.active {
     border-color: #2f5cfa;
   }
 
   .body {
     display: flex;
     border-bottom: 1px solid #ececec;
+    position: relative;
+
+    @media (max-width: 576px) {
+      padding-right: 20px;
+    }
 
     span.avatar {
       display: flex;
@@ -102,20 +127,47 @@ export default {
       font-size: 13px;
       color: #272727;
     }
+
+    span.ellipsis-icon {
+      width: 25px;
+      height: 25px;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 50%;
+      position: absolute;
+      top: 5px;
+      right: -9px;
+
+      @media (max-width: 576px) {
+        display: flex;
+      }
+
+      &:hover {
+        background-color: #f7f7f7;
+      }
+      svg {
+        height: 15px;
+        color: #969696;
+      }
+    }
   }
 
   .footer {
     display: flex;
-    padding-top: 12px;
 
     .group-chat {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       width: 100%;
+      padding-left: 40px;
 
       .members {
-        margin-left: 40px;
+        margin-top: 12px;
 
         img {
           margin-right: 2px;
@@ -127,6 +179,7 @@ export default {
         align-items: center;
         font-size: 13px;
         color: #a6a6a6;
+        margin-top: 12px;
 
         svg {
           color: #9d9d9d;
@@ -138,6 +191,7 @@ export default {
     .single-chat {
       display: flex;
       align-items: center;
+      margin-top: 12px;
 
       svg {
         color: #9d9d9d;

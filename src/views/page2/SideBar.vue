@@ -1,5 +1,8 @@
 <template>
-  <div id="sidebar">
+  <div
+    id="sidebar"
+    :class="{show: this.$store.state.toggleMobileSideMenu}"
+  >
     <div class="sidebar-top">
       <span class="main-icon">
         <icon name="university" />
@@ -54,6 +57,20 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: all 0.3s ease;
+  transition-delay: 0.2s;
+  background-color: white;
+  height: 100vh;
+
+  @media (max-width: 576px) {
+    position: absolute;
+    left: -100px;
+    border-right: 1px solid #f3f3f3;
+  }
+
+  &.show {
+    left: 0;
+  }
 
   .sidebar-top {
     .main-icon {

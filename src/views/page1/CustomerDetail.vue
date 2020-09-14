@@ -84,8 +84,10 @@ export default {
   min-height: 100vh;
 
   &.show {
-    right: 0;
-    position: absolute !important;
+    @media (max-width: 576px) {
+      right: 0;
+      position: absolute !important;
+    }
   }
 
   @media (max-width: 576px) {

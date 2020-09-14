@@ -22,5 +22,11 @@ export default {
 
   $vuexSetToggleMobileCustomerDetail(state, val) {
     state.toggleMobileCustomerDetail = val
+  },
+
+  $vuexSetToggleMobileSideMenu(state, val) {
+    if (!state.toggleMobileChatHistory && !state.toggleMobileCustomerDetail) {
+      state.toggleMobileSideMenu = val
+    }
   }
 }
